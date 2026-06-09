@@ -1,6 +1,7 @@
 package com.example.saudecardiaca.service;
 
 import com.example.saudecardiaca.model.Acompanhamento;
+import com.example.saudecardiaca.model.Usuario;
 import com.example.saudecardiaca.repository.AcompanhamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +15,15 @@ public class AcompanhamentoService {
     @Autowired
     private AcompanhamentoRepository repository;
 
-    public Acompanhamento cadastrar(Acompanhamento acompanhamento) {
+    public Acompanhamento cadastrar(Acompanhamento acompanhamento, Usuario usuarioLogado) {
 
+        // --- SUAS VALIDAÇÕES ORIGINAIS CONTINUAM AQUI ---
         if(acompanhamento.getFrequenciaCardiaca() < 0) {
             throw new RegraNegocioException("Frequência cardíaca inválida");
         }
 
-        if(acompanhamento.getOxigenacao() < 95 ||
-                acompanhamento.getOxigenacao() > 100) {
+        if(acompanhamento.getNivelOxigenacao() < 95 ||
+                acompanhamento.getNivelOxigenacao() > 100) {
             throw new RegraNegocioException("Oxigenação inválida");
         }
 
@@ -30,11 +32,13 @@ public class AcompanhamentoService {
             throw new RegraNegocioException("Pressão arterial inválida");
         }
 
+        // --- VÍNCULO DO USUÁRIO ADICIONADO ---
+        acompanhamento.setUsuario(usuarioLogado);
+
         return repository.save(acompanhamento);
     }
 
-    public List<Acompanhamento> listar() {
-        return repository.findAll();
+    public List<Acompanhamento> listarPorUsuario(Long usuarioId) {
+        return repository.findByUsuarioId(usuarioId);
     }
-
 }

@@ -1,7 +1,7 @@
 package com.example.saudecardiaca.model;
 
-import java.util.List;
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "acompanhamentos")
@@ -10,49 +10,45 @@ public class Acompanhamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String pressaoArterial;
     private int frequenciaCardiaca;
-    private double oxigenacao;
-    private double peso;
-    private List<String> sintomas;
+    private int nivelOxigenacao;
+    private double pesoCorporal;
+    private String sintomas;
+    private LocalDateTime dataRegistro;
 
-    public String getPressaoArterial() {
-        return pressaoArterial;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
+    @PrePersist
+    protected void onCreate() {
+        this.dataRegistro = LocalDateTime.now();
     }
 
-    public void setPressaoArterial(String pressaoArterial) {
-        this.pressaoArterial = pressaoArterial;
-    }
+    // Getters e Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public int getFrequenciaCardiaca() {
-        return frequenciaCardiaca;
-    }
+    public String getPressaoArterial() { return pressaoArterial; }
+    public void setPressaoArterial(String pressaoArterial) { this.pressaoArterial = pressaoArterial; }
 
-    public void setFrequenciaCardiaca(int frequenciaCardiaca) {
-        this.frequenciaCardiaca = frequenciaCardiaca;
-    }
+    public int getFrequenciaCardiaca() { return frequenciaCardiaca; }
+    public void setFrequenciaCardiaca(int frequenciaCardiaca) { this.frequenciaCardiaca = frequenciaCardiaca; }
 
-    public double getOxigenacao() {
-        return oxigenacao;
-    }
+    public int getNivelOxigenacao() { return nivelOxigenacao; }
+    public void setNivelOxigenacao(int nivelOxigenacao) { this.nivelOxigenacao = nivelOxigenacao; }
 
-    public void setOxigenacao(double oxigenacao) {
-        this.oxigenacao = oxigenacao;
-    }
+    public double getPesoCorporal() { return pesoCorporal; }
+    public void setPesoCorporal(double pesoCorporal) { this.pesoCorporal = pesoCorporal; }
 
-    public double getPeso() {
-        return peso;
-    }
+    public String getSintomas() { return sintomas; }
+    public void setSintomas(String sintomas) { this.sintomas = sintomas; }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
+    public LocalDateTime getDataRegistro() { return dataRegistro; }
+    public void setDataRegistro(LocalDateTime dataRegistro) { this.dataRegistro = dataRegistro; }
 
-    public List<String> getSintomas() {
-        return sintomas;
-    }
-
-    public void setSintomas(List<String> sintomas) {
-        this.sintomas = sintomas;
-    }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 }
