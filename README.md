@@ -201,7 +201,7 @@ A API estará disponível em `http://localhost:8081`.
 
 ## Testes Automatizados
 
-O projeto possui uma suíte de testes unitários que cobre **100% dos controllers e das regras de negócio (services)**. A configuração dos testes utiliza um banco de dados em memória (**H2 Database**) para garantir o isolamento sem afetar seu banco MySQL.
+O projeto possui um conjunto de testes unitários que cobre **100% dos controllers e das regras de negócio (services)**. A configuração dos testes utiliza um banco de dados em memória (**H2 Database**) para garantir o isolamento sem afetar seu banco MySQL.
 
 Para rodar todos os testes, execute o seguinte comando na raiz do projeto:
 
