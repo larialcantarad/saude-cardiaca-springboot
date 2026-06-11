@@ -29,6 +29,7 @@ public class SecurityConfig {
                     // Libera criar conta e fazer login
                     req.requestMatchers(HttpMethod.POST, "/auth/registro").permitAll();
                     req.requestMatchers(HttpMethod.POST, "/auth/login").permitAll();
+                    req.requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-resources/**", "/webjars/**").permitAll();
                     // Qualquer outra rota precisará de autenticação
                     req.anyRequest().authenticated();
                 })

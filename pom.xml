@@ -43,12 +43,12 @@
 		</dependency>
 
 		<!-- MySQL -->
-		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
+	<dependency>
+   		 <groupId>com.h2database</groupId>
+   		 <artifactId>h2</artifactId>
+  		  <scope>runtime</scope>
+	</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -95,7 +95,14 @@
 			<version>4.4.0</version>
 		</dependency>
 
-    </dependencies>
+		<!-- Swagger / OpenAPI -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+
+	</dependencies>
 
 	<build>
 		<plugins>
